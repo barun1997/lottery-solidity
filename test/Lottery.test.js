@@ -78,4 +78,15 @@ describe("Lottery Contract", () => {
       assert(error);
     }
   });
+
+  it("it is required for the pick winner to be called by the manager", async () => {
+    try {
+      await lottery.methods.pickWinner().send({
+        from: accounts[3],
+      });
+      assert(false);
+    } catch (error) {
+      assert(error);
+    }
+  });
 });
